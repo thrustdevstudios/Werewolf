@@ -1,0 +1,16 @@
+{
+    "game_master": 123,
+    "prefix": "-",
+    "token": "token here",
+    "lobby_channel": 123,
+    "game_channel": 123,
+    "werewolf_channel": 123,
+    "game_control": 123,
+    "server_id": 123,
+    "player_role": 123,
+    "ping_role": 123,
+    "admins": [123, 456, 789],
+    "user_blacklist": [],
+    "language": "de-DE",
+    "log_level": 0
+}
