@@ -130,3 +130,6 @@ dmypy.json
 
 # Token
 token.key
+
+# Config
+data/config.json
