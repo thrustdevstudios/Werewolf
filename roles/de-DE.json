@@ -1,0 +1,42 @@
+{
+    "villager": {
+        "name": "Dorfbewohner",
+        "desc": "Dorfbewohner schlafen in der Nacht und beteiligen sich am Tage an Diskussionen.",
+        "ability": "- Keine"
+    },
+    "werewolf": {
+        "name": "Werwolf",
+        "desc": "Das Ziel der Werwölfe ist es, alle Dorfbewohner zu töten und so zu gewinnen. Sie wachen nachts auf und kommunizieren im #werwolf-chat um sich auf ein Opfer zu einigen.",
+        "ability": "- Dorfbewohner fressen"
+    },
+    "witch": {
+        "name": "Hexe",
+        "desc": "Die Hexe erwacht nachdem die Werwölfe ihren Mitternachts-Snack beendet haben. Sie kann mit ihren Braukünsten Mordopfer heilen, oder töten.",
+        "ability": "- Heiltrank (1x)\n- Gifttrank (1x)"
+    },
+    "hunter": {
+        "name": "Jäger",
+        "desc": "Der Jäger feuert aus Rache in seinem letzten Atemzug einen Schuss ab, mit dem er einen weiteren Spieler mit in den Tod reißen kann.",
+        "ability": "- Ein letzter Schuss (1x)"
+    },
+    "amor": {
+        "name": "Amor",
+        "desc": "Amor erwacht einmal in der ersten Nacht, um zwei Spieler seiner Wahl miteinander zu verlieben. Falls einer der beiden verliebten stirbt, macht es ihm der Partner trauernd nach.",
+        "ability": "- Liebespfeil (1x)"
+    },
+    "seer": {
+        "name": "Seherin",
+        "desc": "Jede Nacht wacht die Seherin auf, und späht in die Karten jeweils eines anderen Spielers. Sie muss ihr Wissen jedoch vorsichtig einsetzen, sodass die Werwölfe nicht von ihren Fähigkeiten Wind bekommen...",
+        "ability": "- Kristallkugel (unbegrenzt)"
+    },
+    "bodyguard": {
+        "name": "Leibwächter",
+        "desc": "Der Leibwächter sucht sich jeden Abend eine Person aus die er beschützen will (auch sich selbst). Diese Person ist für diese Nacht unsterblich. Es kann nicht zwei Nächte hintereinander die gleiche Person beschützt werden.",
+        "ability": "- Nächtlcher Schutz (unbegrenzt)"
+    },
+    "wild_kid": {
+        "name": "Wildes Kind",
+        "desc": "Das wilde Kind sucht sich am Anfang der Runde ein Vorbild im Dorf. Wenn er/sie stirbt, wird das Kind so wütend, dass es zum Werwolf wird.",
+        "ability": "- Vorbild suchen (1x)"
+    }
+}
