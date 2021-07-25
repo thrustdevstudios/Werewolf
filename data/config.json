@@ -1,0 +1,16 @@
+{
+    "game_master": 839828233285402634,
+    "prefix": "-",
+    "token": "ODY3MTM1NTIwODY5NzExODky.YPcs4g.RL21h1VqLKj6ZjlTkumzfNheiO0",
+    "lobby_channel": 867108595672678411,
+    "game_channel": 867389512953626654,
+    "werewolf_channel": 867126719994527765,
+    "game_control": 867126554521894949,
+    "server_id": 123,
+    "player_role": 123,
+    "ping_role": 123,
+    "admins": [123, 456, 789],
+    "user_blacklist": [],
+    "language": "de-DE",
+    "log_level": 0
+}

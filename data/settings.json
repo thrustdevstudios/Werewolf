@@ -1,0 +1,10 @@
+{
+    "min_players": 8,
+    "werewolf_chance": 0.35,
+    "witch_chance": 0.35,
+    "hunter_chance": 0.35,
+    "amor_chance": 0.35,
+    "seer_chance": 0.35,
+    "bodyguard_chance": 0.35,
+    "wild_kid_chance": 0.35
+}
