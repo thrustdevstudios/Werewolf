@@ -1,0 +1,60 @@
+{
+    "ping": [
+        "Pong!"
+    ],
+    "shortqueue": [
+        "Es sind nicht genug Spieler in der Warteschlange.",
+        "Es fehlen noch {0} Spieler."
+    ],
+    "inqueue": [
+        "Du bist in der Werwolf-Lobby. GLHF!"
+    ],
+    "notplayingleave": [
+        "Du kannst nicht verlassen, wenn du nicht drin bist..."
+    ],
+    "alreadyin": [
+        "Du bist schon in der Warteschlange!",
+        "Du bist schon drin!"
+    ],
+    "joinlobby": [
+        "**{0}** ist nun mit von der Partie. Willkommen!",
+        "Mit **{0}** sind wir {1}.",
+        "**{0}** gesellt sich zu uns."
+    ],
+    "leavelobby": [
+        "**{0}** hat das Spiel verlassen. Es sind noch {1} Spieler in der Lobby.",
+        "**{0}** hat sich entschieden zu gehen.",
+        "**{0}** gefiel es hier nicht mehr. Schade.",
+        "**{0}** wurde die Wartezeit zu lang. {1} Spieler verbleiben."
+    ],
+    "leavedeath": [
+        "**{0}** hat sich spontan in Luft aufgelöst. Es riecht nach verbranntem {1}.",
+        "**{0}**, ein {1} wurde von einem Panzer gerammt.",
+        "**{0}** ist ausgewandert. Man munkelt er/sie sei {1} gewesen..."
+    ],
+    "leavedeathnoreveal": [
+        "**{0}** hat sich spontan in Luft aufgelöst.",
+        "**{0}** wurde von einem Panzer gerammt.",
+        "**{0}** ist ausgewandert."
+    ],
+    "lynched": [
+        "Die Dorfbewohner haben sich geeinigt, **{0}** zu lynchen, ein {1}",
+        "Sich wehrend wird **{0}** zum Galgen geführt, der sich später als {1} herausstellt."
+    ],
+    "lynchednoreveal": [
+        "Die Dorfbewohner haben sich geeinigt, **{0}** zu lynchen.",
+        "Sich wehrend wird **{0}** zum Galgen geführt."
+    ],
+    "alreadynight": [
+        "Es ist bereits Nacht."
+    ],
+    "sunset": [
+        "Es wird Nacht. Du kannst nun (falls vorhanden) deine Fähigkeit(en) verwenden."
+    ],
+    "alreadyday": [
+        "Es ist bereits Tag."
+    ],
+    "sunrise": [
+        "Es wird Tag. Du kannst nun an der Diskussion teilnehmen."
+    ]
+}
