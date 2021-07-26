@@ -1,4 +1,4 @@
-# Werewolf **v0.1.0-beta**
+# Werewolf **v0.1.0 Pre-Alpha**
 A Discord-Bot implementing the party game Werewolf (aka Mafia)
 
 ## **Rules**
