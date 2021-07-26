@@ -41,10 +41,21 @@ special_roles = ["witch", "hunter", "amor", "seer", "bodyguard", "wild_kid"]
 
 
 def get_time():
+    """Returns current time.
+
+    Returns:
+        str: Formatted time in HH:MM:SS format.
+    """
     return f"[{datetime.now().strftime('%H:%M:%S')}] "
 
 
 def log(level: int, message: str):
+    """Logs input to console.
+
+    Args:
+        level (int): Log level (0: Debug, 1: Info, 2: Warning, 3: Error)
+        message (str): The message that will be logged in console
+    """
     prefix = {0: f'{util.Colours.DEBUG}[DEBUG] ',
               1: f'{util.Colours.INFO}[INFO] ',
               2: f'{util.Colours.WARNING}[WARNING] ',
@@ -81,6 +92,8 @@ client = commands.Bot(command_prefix="-", intents=intents)
 
 
 async def game_board():
+    """Sends game board into the game channel based on current game status
+    """
     global sent_message
     global game_status
     if game_status == "waiting":
@@ -101,23 +114,48 @@ async def get_token():
         return f.read()
 
 
-async def get_msg(id):
+async def get_msg(id:str):
+    """Gets and returns a random message from the message file
+
+    Args:
+        id (str): ID can be found in the json language file
+
+    Returns:
+        str: Returns a randomly picked message based on given ID
+    """
     return random.choice(translations[id])
 
 
-async def dm(user, msg):
+async def dm(user:int, msg:str):
+    """Sends a direct message to specified user.
+
+    Args:
+        user (int): Discord user-id of the user the message should be sent to
+        msg (str): The message delivered to the user
+    """
     try:
         await user.send(msg)
     except discord.Forbidden:
         log(2, f"Couldn't DM {user.name}. Error Code: Onion")
 
 
-async def dm_all(msg):
+async def dm_all(msg:str):
+    """Sends a direct message to all users on the player list
+
+    Args:
+        msg (str): The message delivered to all users
+    """
     for player in player_list:
         await dm(player, msg)
 
 
-async def assign(player, role):
+async def assign(player:int, role:str):
+    """Assigns chosen role to a player
+
+    Args:
+        player (int): Discord User-ID
+        role (str): Role-ID found in roles file
+    """
     log(0, f"Assigning {role} to {player}")
     player_dict[player]["role"] = role
     user = client.get_user(player)
