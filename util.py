@@ -20,12 +20,12 @@ GAME_MASTER = 839828233285402634
 LOG_LEVEL = 0
 
 def get_config(key:str):
-    with open('data/config.json') as f:
+    with open('config.json') as f:
         config = json.load(f)
     return config[key]
 
 def get_setting(key:str):
-    with open('data/settings.json') as f:
+    with open('settings.json') as f:
         settings = json.load(f)
     return settings[key]
 
