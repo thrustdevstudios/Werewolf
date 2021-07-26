@@ -1,7 +1,8 @@
 import json
 import os
 import random
-from datetime import datetime
+from datetime import datetime, timedelta
+from typing import OrderedDict
 
 import discord
 from discord.ext import commands
@@ -25,6 +26,17 @@ player_list = []
 player_dict = {}
 roles = ["villager", "werewolf", "witch", "hunter",
          "amor", "seer", "bodyguard", "wild_kid"]
+session = {
+    'is_playing': 'False',
+    'players': OrderedDict(),
+    'is_day': False,
+    'time': {
+        'night_elapsed': timedelta(0),
+        'day_elapsed': timedelta(0)
+    },
+    'first_join': 0,
+    'gamemode': 0
+}
 special_roles = ["witch", "hunter", "amor", "seer", "bodyguard", "wild_kid"]
 
 
