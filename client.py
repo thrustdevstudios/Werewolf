@@ -106,7 +106,7 @@ async def game_board():
 
 
 async def get_game_board():
-    return f"**WERWOLF**\nSpieler: {len(player_list)}"
+    return f"**Werewolf**\nSpieler: {len(player_list)}"
 
 
 async def get_token():
@@ -249,7 +249,7 @@ async def join(ctx):
         await game_board()
 
         try:
-            await player.send("You're in the queue for Werwolf. GLHF!")
+            await player.send("You're in the queue for Werewolf. GLHF!")
         except discord.Forbidden:
             log(2, f"Couldn't DM {player}. Error code: EICHHÖRNCHEN")
 
@@ -297,7 +297,7 @@ async def start(ctx):
         return
     log(1, "Assigning roles.")
 
-    await client.change_presence(status=discord.Status.dnd, activity=discord.Game(name="Werwolf"))
+    await client.change_presence(status=discord.Status.dnd, activity=discord.Game(name="Werewolf"))
 
     max_werewolves = round(len(player_list) // 3, 9)
     assigned_specials = []
