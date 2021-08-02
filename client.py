@@ -79,15 +79,6 @@ async def load_language():
         exit()
 
 
-PLAYER_FILE = "data/players.json"
-
-
-async def update_player_file():
-    with open(PLAYER_FILE, "w") as f:
-        json.dump(player_dict, f, indent=4)
-    log(0, "Player file updated.")
-
-
 client = commands.Bot(command_prefix="-", intents=intents)
 
 
@@ -197,7 +188,6 @@ async def reload(ctx):
 @has_role("Captain")
 async def closeclient(ctx):
     await client.change_presence(status=discord.Status.offline, activity=None)
-    os.remove(PLAYER_FILE)
     await client.close()
 
 
@@ -323,7 +313,6 @@ async def start(ctx):
         else:
             await assign(player, "villager")
     log(1, f"{len(player_list)} roles assigned. Special roles: {assigned_specials}")
-    await update_player_file()
 
 
 @client.command()
