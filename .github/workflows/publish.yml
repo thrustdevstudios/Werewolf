@@ -8,6 +8,7 @@ on:
 env:
   # Docker Hub image name - lower case only
   IMAGE_NAME: werewolf
+  DOCKER_USER: aehliglucas
 
 jobs:
   pylint:
@@ -57,4 +58,5 @@ jobs:
 
       - name: Push image
         run: |
-          docker push lucasaehlig/$IMAGE_NAME:latest
+          docker tag $IMAGE_NAME $DOCKER_USER/$IMAGE_NAME:latest
+          docker push $DOCKER_USER/$IMAGE_NAME:latest
