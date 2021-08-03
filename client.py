@@ -282,8 +282,8 @@ async def start(ctx):
     idol = str
     wild_kid = str
 
-    if len(player_list) <= 0:
-        await ctx.send("Not enough players in queue")
+    if len(player_list) <= util.get_setting('min_players'):
+        await ctx.send(get_msg("shortqueue"))
         return
     log(1, "Assigning roles.")
 
