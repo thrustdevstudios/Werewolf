@@ -27,7 +27,7 @@ player_dict = {}
 roles = ["villager", "werewolf", "witch", "hunter",
          "amor", "seer", "bodyguard", "wild_kid"]
 session = {
-    'is_playing': 'False',
+    'is_playing': False,
     'players': OrderedDict(),
     'is_day': False,
     'time': {
