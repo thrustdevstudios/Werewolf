@@ -2,13 +2,14 @@ name: Publish
 
 on:
   push:
-    branches:
-      - "master"
+    branches: ["master"]
 
 env:
-  # Docker Hub image name - lower case only
+  # Docker Hub repository name - lower case only
   IMAGE_NAME: werewolf
-  DOCKER_USER: aehliglucas
+  #Docker Credentials
+  DOCKER_USER: ${{ secrets.DOCKER_USER }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
 jobs:
   pylint:
@@ -51,13 +52,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Repo Checkout
+        uses: actions/checkout@v2
 
-      - name: Build image
-        run: docker build . --file Dockerfile --tag $IMAGE_NAME
-
-      - name: Push image
+      - name: Docker Authorization
         run: |
-          IMAGE_ID=https://hub.docker.com/repository/docker/$DOCKER_USER/$IMAGE_NAME
-          docker tag $IMAGE_NAME $IMAGE_ID:latest
-          docker push $IMAGE_ID:latest
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      
+      #TODO: Add correct version numeration
+      - name: Docker Build
+        run: docker build . --file Dockerfile --tag $DOCKER_USER/$IMAGE_NAME:latest
+
+      - name: Docker Push
+        run: docker push $DOCKER_USER/$IMAGE_NAME
