@@ -44,4 +44,17 @@ jobs:
           else
             docker build . --file Dockerfile
           fi
-  #
+  
+  docker-hub-push:
+    needs: [pylint, docker-build-test]
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build image
+        run: docker build . --file Dockerfile --tag $IMAGE_NAME
+
+      - name: Push image
+        run: |
+          docker push lucasaehlig/$IMAGE_NAME:latest
