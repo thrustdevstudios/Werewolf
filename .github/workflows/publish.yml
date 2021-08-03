@@ -46,7 +46,7 @@ jobs:
           fi
   
   docker-hub-push:
-    needs: [pylint, docker-build-test]
+    needs: [docker-build-test]
     runs-on: ubuntu-latest
 
     steps:
