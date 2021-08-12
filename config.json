@@ -1,7 +1,6 @@
 {
     "game_master": 123,
     "prefix": "-",
-    "token": "token here",
     "lobby_channel": 123,
     "game_channel": 123,
     "werewolf_channel": 123,
