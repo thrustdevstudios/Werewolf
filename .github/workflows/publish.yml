@@ -7,9 +7,11 @@ on:
 env:
   # Docker Hub repository name - lower case only
   IMAGE_NAME: werewolf
-  #Docker Credentials
+  # Docker Credentials
   DOCKER_USER: ${{ secrets.DOCKER_USER }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+  # Discord Bot Token
+  CLIENT_TOKEN: ${{ secrets.CLIENT_TOKEN }}
 
 jobs:
   pylint:
