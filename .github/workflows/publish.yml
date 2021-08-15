@@ -4,6 +4,8 @@ on:
   push:
     branches: ["master"]
 
+# Moin Meister
+
 env:
   # Docker Hub repository name - lower case only
   IMAGE_NAME: werewolf
