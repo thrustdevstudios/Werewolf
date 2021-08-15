@@ -9,9 +9,16 @@ on:
 env:
   # Docker Hub repository name - lower case only
   IMAGE_NAME: werewolf
-  #Docker Credentials
+  # Docker Credentials
   DOCKER_USER: ${{ secrets.DOCKER_USER }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+  # Discord
+  CLIENT_TOKEN: ${{ secrets.CLIENT_TOKEN }}
+  GAME_CHANNEL: ${{ secrets.GAME_CHANNEL }}
+  GAME_CONTROL_CHANNEL: ${{ secrets.GAME_CONTROL_CHANNEL }}
+  GAME_MASTER: ${{ secrets.GAME_MASTER }}
+  LOBBY_CHANNEL: ${{ secrets.LOBBY_CHANNEL }}
+  WEREWOLF_CHANNEL: ${{ secrets.WEREWOLF_CHANNEL }}
 
 jobs:
   pylint:

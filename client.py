@@ -360,4 +360,4 @@ async def wolves(ctx):
     pass
 
 
-client.run(util.get_config('token'))
+client.run(os.environ['CLIENT_TOKEN'])
