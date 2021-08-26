@@ -71,16 +71,10 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       
       #TODO: Add correct version numeration
-      - name: Get Docker Repo Meta
-        id: meta
-        uses: docker/metadata-action@v1
-        with:
-          images: $DOCKER_USER/$IMAGE_NAME
       
       - name: Docker Build/Push
         uses: docker/build-push-action@v1
         with:
           context: ./
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ secrets.DOCKER_USER }}/werewolf:latest
