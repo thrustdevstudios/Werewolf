@@ -76,5 +76,6 @@ jobs:
         uses: docker/build-push-action@v1
         with:
           context: ./
+          file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USER }}/werewolf:latest
+          tags: aniechzial/werewolf:latest
