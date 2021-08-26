@@ -80,7 +80,7 @@ jobs:
       - name: Docker Build/Push
         uses: docker/build-push-action@v1
         with:
-          context: .
+          context: ./
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
