@@ -70,12 +70,19 @@ jobs:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       
+      - name: Extract Metadata
+        id: meta
+        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+        with:
+          images: aniechzial/werewolf
+      
       #TODO: Add correct version numeration
       
       - name: Docker Build/Push
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
-          context: ./
+          context: .
           file: ./Dockerfile
           push: true
-          tags: aniechzial/werewolf:latest
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: §{{ steps.meta.outputs.tags }}
