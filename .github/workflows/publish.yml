@@ -67,8 +67,8 @@ jobs:
       - name: Docker Authorization
         uses: docker/login-action@v1
         with:
-          username: $DOCKER_USER
-          password: $DOCKER_PASSWORD
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
       
       #TODO: Add correct version numeration
       - name: Get Docker Repo Meta
