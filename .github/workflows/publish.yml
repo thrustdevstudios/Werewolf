@@ -9,9 +9,6 @@ on:
 env:
   # Docker Hub repository name - lower case only
   IMAGE_NAME: werewolf
-  # Docker Credentials
-  DOCKER_USER: ${{ secrets.DOCKER_USER }}
-  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
   # Discord
   CLIENT_TOKEN: ${{ secrets.CLIENT_TOKEN }}
   GAME_CHANNEL: ${{ secrets.GAME_CHANNEL }}
