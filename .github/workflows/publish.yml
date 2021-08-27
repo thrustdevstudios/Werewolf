@@ -73,4 +73,4 @@ jobs:
     - name: Deployment Request
       uses: wei/curl@v1
       with:
-        args: -X GET http://luftways.com/werewolf-deploy.php
+        args: -u deploy:${{ secrets.DEPLOYMENT_PASSWORD }} -X GET http://luftways.com/werewolf-deploy.php
