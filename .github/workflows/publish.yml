@@ -66,3 +66,10 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: §{{ steps.meta.outputs.tags }}
+  curl:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Prod Deploy
+      uses: wei/curl@v1
+      with:
+        args: -X GET http://luftways.com/werewolf-deploy.php
