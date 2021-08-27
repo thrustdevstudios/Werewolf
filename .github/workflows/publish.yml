@@ -67,6 +67,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: §{{ steps.meta.outputs.tags }}
   curl:
+    needs: [docker-build-test]
     runs-on: ubuntu-latest
     steps:
     - name: Prod Deploy
