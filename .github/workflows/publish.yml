@@ -7,8 +7,6 @@ on:
 # Moin Meister
 
 env:
-  # Docker Hub repository name - lower case only
-  IMAGE_NAME: werewolf
   # Discord
   CLIENT_TOKEN: ${{ secrets.CLIENT_TOKEN }}
   GAME_CHANNEL: ${{ secrets.GAME_CHANNEL }}
