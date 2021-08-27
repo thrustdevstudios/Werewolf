@@ -21,26 +21,6 @@ env:
   WEREWOLF_CHANNEL: ${{ secrets.WEREWOLF_CHANNEL }}
 
 jobs:
-  pylint:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Python 3.9 Setup
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.9
-
-      - name: Pylint Dependency Installation
-        run: |
-          python -m pip install --upgrade pip
-          pip install pylint
-
-      - name: Pylint Code Analysis
-        run: |
-          pylint `ls -R|grep .py$|xargs`
-
   docker-build-test:
     runs-on: ubuntu-latest
 
