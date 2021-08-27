@@ -20,6 +20,7 @@ WEREWOLF_CHANNEL = util.get_config('werewolf_channel')
 GAME_CONTROL_CHANNEL = util.get_config('game_control')
 GAME_MASTER = util.get_config('game_master')
 LOG_LEVEL = 0
+test = "test"
 
 game_status = None
 player_list = []
