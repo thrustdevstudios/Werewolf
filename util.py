@@ -2,8 +2,6 @@ import json
 import os
 from datetime import datetime
 
-from discord.webhook import Webhook
-
 
 class Colours:
     HEADER = '\033[95m'
