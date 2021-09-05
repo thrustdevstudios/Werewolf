@@ -17,7 +17,7 @@ config = {
     'lobby_channel': os.environ.get('LOBBY_CHANNEL'),
     'game_channel': os.environ.get('GAME_CHANNEL'),
     'werewolf_channel': os.environ.get('WEREWOLF_CHANNEL'),
-    'game_control_channel': os.environ.get('GAME_CONTROL_CHANNEL'),
+    'game_control': os.environ.get('GAME_CONTROL_CHANNEL'),
     'game_master': os.environ.get('GAME_MASTER')
 }
 
