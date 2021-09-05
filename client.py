@@ -17,7 +17,7 @@ VERSION = util.get_version()
 LOBBY_CHANNEL = util.get_config('lobby_channel')
 GAME_CHANNEL = util.get_config('game_channel')
 WEREWOLF_CHANNEL = util.get_config('werewolf_channel')
-GAME_CONTROL_CHANNEL = util.get_config('game_control')
+GAME_CONTROL_CHANNEL = util.get_config('game_control_channel')
 GAME_MASTER = util.get_config('game_master')
 LOG_LEVEL = 0
 
