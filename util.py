@@ -14,11 +14,11 @@ class Colours:
 
 VERSION = 'v0.2.0-a1'
 config = {
-    'lobby_channel': os.environ['LOBBY_CHANNEL'],
-    'game_channel': os.environ['GAME_CHANNEL'],
-    'werewolf_channel': os.environ['WEREWOLF_CHANNEL'],
-    'game_control_channel': os.environ['GAME_CONTROL_CHANNEL'],
-    'game_master': os.environ['GAME_MASTER']
+    'lobby_channel': os.environ.get('LOBBY_CHANNEL'),
+    'game_channel': os.environ.get('GAME_CHANNEL'),
+    'werewolf_channel': os.environ.get('WEREWOLF_CHANNEL'),
+    'game_control_channel': os.environ.get('GAME_CONTROL_CHANNEL'),
+    'game_master': os.environ.get('GAME_MASTER')
 }
 
 
