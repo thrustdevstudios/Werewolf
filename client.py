@@ -4,13 +4,13 @@ import random
 from datetime import datetime, timedelta
 from typing import OrderedDict
 
-import discord
-from discord.ext import commands
-from discord.ext.commands.core import has_role
+import nextcord
+from nextcord.ext import commands
+from nextcord.ext.commands.core import has_role
 
 import util
 
-intents = discord.Intents.default()
+intents = nextcord.Intents.default()
 intents.members = True
 
 VERSION = util.get_version()
@@ -130,12 +130,12 @@ async def dm(user:int, msg:str):
     """Sends a direct message to specified user.
 
     Args:
-        user (int): Discord user-id of the user the message should be sent to
+        user (int): nextcord user-id of the user the message should be sent to
         msg (str): The message delivered to the user
     """
     try:
         await user.send(msg)
-    except discord.Forbidden:
+    except nextcord.Forbidden:
         log(2, f"Couldn't DM {user.name}. Error Code: Onion")
 
 
@@ -153,7 +153,7 @@ async def assign(player:int, role:str):
     """Assigns chosen role to a player
 
     Args:
-        player (int): Discord User-ID
+        player (int): nextcord User-ID
         role (str): Role-ID found in roles file
     """
     log(0, f"Assigning {role} to {player}")
@@ -176,7 +176,7 @@ async def on_ready():
     log(1, f"{client.user.name}")
     log(1, f"{client.user.id}")
     log(1, f"--------------------")
-    await client.change_presence(status=discord.Status.online)
+    await client.change_presence(status=nextcord.Status.online)
 
 
 @client.command()
@@ -196,7 +196,7 @@ async def reload(ctx):
 @client.command()
 @has_role("Captain")
 async def closeclient(ctx):
-    await client.change_presence(status=discord.Status.offline, activity=None)
+    await client.change_presence(status=nextcord.Status.offline, activity=None)
     os.remove(PLAYER_FILE)
     await client.close()
 
@@ -217,7 +217,7 @@ async def closegame(ctx):
     game_status = "closed"
     await game_board()
     log(0, "Closing session...")
-    await client.change_presence(status=discord.Status.online, activity=None)
+    await client.change_presence(status=nextcord.Status.online, activity=None)
     for player in player_list:
         user = client.get_user(player)
         await user.send(
@@ -250,7 +250,7 @@ async def join(ctx):
 
         try:
             await player.send("You're in the queue for Werewolf. GLHF!")
-        except discord.Forbidden:
+        except nextcord.Forbidden:
             log(2, f"Couldn't DM {player}. Error code: EICHHÖRNCHEN")
 
     elif game_status == "running":
@@ -297,7 +297,7 @@ async def start(ctx):
         return
     log(1, "Assigning roles.")
 
-    await client.change_presence(status=discord.Status.dnd, activity=discord.Game(name="Werewolf"))
+    await client.change_presence(status=nextcord.Status.dnd, activity=nextcord.Game(name="Werewolf"))
 
     max_werewolves = round(len(player_list) // 3, 9)
     assigned_specials = []
