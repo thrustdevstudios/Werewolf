@@ -2,8 +2,6 @@ import json
 import os
 from datetime import datetime
 
-from discord.webhook import Webhook
-
 
 class Colours:
     HEADER = '\033[95m'
@@ -14,7 +12,7 @@ class Colours:
     END = '\033[0m'
 
 
-VERSION = 'v0.1.0-a.1'
+VERSION = 'v0.2.0-a1'
 config = {
     'lobby_channel': os.environ['LOBBY_CHANNEL'],
     'game_channel': os.environ['GAME_CHANNEL'],
