@@ -359,5 +359,5 @@ async def eliminate(ctx, player):
 async def wolves(ctx):
     pass
 
-
-client.run(os.environ.get('CLIENT_TOKEN'))
+TOKEN=os.getenv('CLIENT_TOKEN')
+client.run(TOKEN)
