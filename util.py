@@ -13,6 +13,7 @@ class Colours:
 
 
 VERSION = os.environ.get('VERSION')
+COMMIT = os.environ.get('COMMIT')
 config = {
     'lobby_channel': os.environ.get('LOBBY_CHANNEL'),
     'game_channel': os.environ.get('GAME_CHANNEL'),
@@ -37,7 +38,7 @@ def get_time():
 
 
 def get_version():
-    return VERSION
+    return f'{VERSION} ({COMMIT})'
 
 
 def log(level: int, message: str):
