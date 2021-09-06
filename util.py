@@ -12,7 +12,7 @@ class Colours:
     END = '\033[0m'
 
 
-VERSION = 'v0.2.0-a1'
+VERSION = os.environ.get('VERSION')
 config = {
     'lobby_channel': os.environ.get('LOBBY_CHANNEL'),
     'game_channel': os.environ.get('GAME_CHANNEL'),
