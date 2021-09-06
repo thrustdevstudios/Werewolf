@@ -1,4 +1,4 @@
-# Werewolf **v0.1.0 Pre-Alpha**
+# Werewolf
 [![Publish](https://github.com/thrustdevstudios/Werewolf/actions/workflows/publish.yml/badge.svg?branch=master)](https://github.com/thrustdevstudios/Werewolf/actions/workflows/publish.yml)
 
 A Discord-Bot implementing the party game Werewolf (aka Mafia)
