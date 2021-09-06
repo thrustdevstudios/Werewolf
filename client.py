@@ -27,7 +27,7 @@ player_dict = {}
 roles = ["villager", "werewolf", "witch", "hunter",
          "amor", "seer", "bodyguard", "wild_kid"]
 session = {
-    'is_playing': 'False',
+    'is_playing': False,
     'players': OrderedDict(),
     'is_day': False,
     'time': {
@@ -77,15 +77,6 @@ async def load_language():
     except FileNotFoundError:
         log(3, "Language file not found. Terminating.")
         exit()
-
-
-PLAYER_FILE = "data/players.json"
-
-
-async def update_player_file():
-    with open(PLAYER_FILE, "w") as f:
-        json.dump(player_dict, f, indent=4)
-    log(0, "Player file updated.")
 
 
 client = commands.Bot(command_prefix="-", intents=intents)
@@ -197,7 +188,6 @@ async def reload(ctx):
 @has_role("Captain")
 async def closeclient(ctx):
     await client.change_presence(status=nextcord.Status.offline, activity=None)
-    os.remove(PLAYER_FILE)
     await client.close()
 
 
@@ -292,8 +282,8 @@ async def start(ctx):
     idol = str
     wild_kid = str
 
-    if len(player_list) <= 0:
-        await ctx.send("Not enough players in queue")
+    if len(player_list) <= util.get_setting('min_players'):
+        await ctx.send(get_msg("shortqueue"))
         return
     log(1, "Assigning roles.")
 
@@ -323,7 +313,6 @@ async def start(ctx):
         else:
             await assign(player, "villager")
     log(1, f"{len(player_list)} roles assigned. Special roles: {assigned_specials}")
-    await update_player_file()
 
 
 @client.command()
