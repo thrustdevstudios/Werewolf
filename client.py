@@ -9,16 +9,17 @@ from nextcord.ext import commands
 from nextcord.ext.commands.core import has_role
 
 import util
+from util.logger import log
 
 intents = nextcord.Intents.default()
 intents.members = True
 
-VERSION = util.get_version()
-LOBBY_CHANNEL = util.get_config('lobby_channel')
-GAME_CHANNEL = util.get_config('game_channel')
-WEREWOLF_CHANNEL = util.get_config('werewolf_channel')
-GAME_CONTROL_CHANNEL = util.get_config('game_control_channel')
-GAME_MASTER = util.get_config('game_master')
+VERSION = util.config.get_version()
+LOBBY_CHANNEL = util.config.get_config('lobby_channel')
+GAME_CHANNEL = util.config.get_config('game_channel')
+WEREWOLF_CHANNEL = util.config.get_config('werewolf_channel')
+GAME_CONTROL_CHANNEL = util.config.get_config('game_control_channel')
+GAME_MASTER = util.config.get_config('game_master')
 LOG_LEVEL = 0
 
 game_status = None
@@ -47,22 +48,6 @@ def get_time():
         str: Formatted time in HH:MM:SS format.
     """
     return f"[{datetime.now().strftime('%H:%M:%S')}] "
-
-
-def log(level: int, message: str):
-    """Logs input to console.
-
-    Args:
-        level (int): Log level (0: Debug, 1: Info, 2: Warning, 3: Error)
-        message (str): The message that will be logged in console
-    """
-    prefix = {0: f'{util.Colours.DEBUG}[DEBUG] ',
-              1: f'{util.Colours.INFO}[INFO] ',
-              2: f'{util.Colours.WARNING}[WARNING] ',
-              3: f'{util.Colours.ERROR}[ERROR] '
-              }
-    suffix = f'{util.Colours.END}'
-    print(f'{prefix[level]}{get_time()}{message}{suffix}')
 
 
 LANGUAGE = "de-DE"
@@ -105,7 +90,7 @@ async def get_token():
         return f.read()
 
 
-async def get_msg(id:str):
+async def get_msg(id: str):
     """Gets and returns a random message from the message file
 
     Args:
@@ -117,7 +102,7 @@ async def get_msg(id:str):
     return random.choice(translations[id])
 
 
-async def dm(user:int, msg:str):
+async def dm(user: int, msg: str):
     """Sends a direct message to specified user.
 
     Args:
@@ -130,7 +115,7 @@ async def dm(user:int, msg:str):
         log(2, f"Couldn't DM {user.name}. Error Code: Onion")
 
 
-async def dm_all(msg:str):
+async def dm_all(msg: str):
     """Sends a direct message to all users on the player list
 
     Args:
@@ -140,7 +125,7 @@ async def dm_all(msg:str):
         await dm(player, msg)
 
 
-async def assign(player:int, role:str):
+async def assign(player: int, role: str):
     """Assigns chosen role to a player
 
     Args:
@@ -282,7 +267,7 @@ async def start(ctx):
     idol = str
     wild_kid = str
 
-    if len(player_list) <= util.get_setting('min_players'):
+    if len(player_list) <= util.config.get_setting('min_players'):
         await ctx.send(get_msg("shortqueue"))
         return
     log(1, "Assigning roles.")
@@ -348,5 +333,5 @@ async def eliminate(ctx, player):
 async def wolves(ctx):
     pass
 
-TOKEN=os.getenv('CLIENT_TOKEN')
+TOKEN = os.getenv('CLIENT_TOKEN')
 client.run(TOKEN)
