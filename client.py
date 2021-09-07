@@ -156,11 +156,6 @@ async def on_ready():
 
 
 @client.command()
-async def version(ctx):
-    await ctx.send(f"Current version: {VERSION}")
-
-
-@client.command()
 @has_role("Captain")
 async def reload(ctx):
     log(1, "Reloading...")

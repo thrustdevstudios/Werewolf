@@ -18,12 +18,3 @@ def get_time():
         str: Current time
     """
     return f"[{datetime.now().strftime('%H:%M:%S')}] "
-
-
-def get_version():
-    """Returns current project version, commit hash and build number in format <version> (<commit>) Build: <build number>
-
-    Returns:
-        str: Version, commit hash and build number
-    """
-    return f'{VERSION} ({COMMIT}) Build: {BUILD}'

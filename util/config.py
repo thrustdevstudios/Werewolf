@@ -1,9 +1,6 @@
 import json
 import os
 
-VERSION = os.environ.get('VERSION')
-COMMIT = os.environ.get('COMMIT')
-BUILD = os.environ.get('BUILD')
 config = {
     'lobby_channel': os.environ.get('LOBBY_CHANNEL'),
     'game_channel': os.environ.get('GAME_CHANNEL'),
