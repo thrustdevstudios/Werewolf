@@ -67,6 +67,11 @@ async def load_language():
 client = commands.Bot(command_prefix="-", intents=intents)
 
 
+for folder in os.listdir('cogs'):
+    if os.path.exists(os.path.join('cogs', folder, 'cog.py')):
+        client.load_extension(f'cogs.{folder}.cog')
+
+
 async def game_board():
     """Sends game board into the game channel based on current game status
     """
