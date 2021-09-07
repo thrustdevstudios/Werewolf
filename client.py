@@ -14,7 +14,6 @@ from util.logger import log
 intents = nextcord.Intents.default()
 intents.members = True
 
-VERSION = util.misc.get_version()
 LOBBY_CHANNEL = util.config.get_config('lobby_channel')
 GAME_CHANNEL = util.config.get_config('game_channel')
 WEREWOLF_CHANNEL = util.config.get_config('werewolf_channel')
