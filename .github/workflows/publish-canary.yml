@@ -1,0 +1,63 @@
+name: Publish Canary
+
+on:
+  push:
+    branches: ["dev"]
+  schedule:
+    - cron: "0 13 * * 1"
+
+
+jobs:
+  docker-build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run tests
+        run: |
+          if [ -f docker-compose.test.yml ]; then
+            docker-compose --file docker-compose.test.yml build
+            docker-compose --file docker-compose.test.yml run sut
+          else
+            docker build . --file Dockerfile
+          fi
+  
+  docker-hub-push:
+    needs: [docker-build-test]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repo Checkout
+        uses: actions/checkout@v2
+
+      - name: Docker Authorization
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      
+      - name: Extract Metadata
+        id: meta
+        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+        with:
+          images: aniechzial/werewolf@canary
+      
+      #TODO: Add correct version numeration
+      
+      - name: Docker Build/Push
+        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: §{{ steps.meta.outputs.tags }}
+  prod-deploy:
+    needs: [docker-build-test]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deployment Request
+      uses: wei/curl@v1
+      with:
+        args: -u deploy:${{ secrets.DEPLOYMENT_PASSWORD }} -X GET http://luftways.com/werewolf-canary-deploy.php
