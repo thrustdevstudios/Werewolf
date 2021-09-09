@@ -9,17 +9,17 @@ from nextcord.ext import commands
 from nextcord.ext.commands.core import has_role
 
 import util
+from util import config
 from util.logger import log
 
 intents = nextcord.Intents.default()
 intents.members = True
 
-VERSION = util.misc.get_version()
-LOBBY_CHANNEL = util.config.get_config('lobby_channel')
-GAME_CHANNEL = util.config.get_config('game_channel')
-WEREWOLF_CHANNEL = util.config.get_config('werewolf_channel')
-GAME_CONTROL_CHANNEL = util.config.get_config('game_control_channel')
-GAME_MASTER = util.config.get_config('game_master')
+LOBBY_CHANNEL = config.get_config('lobby_channel')
+GAME_CHANNEL = config.get_config('game_channel')
+WEREWOLF_CHANNEL = config.get_config('werewolf_channel')
+GAME_CONTROL_CHANNEL = config.get_config('game_control_channel')
+GAME_MASTER = config.get_config('game_master')
 LOG_LEVEL = 0
 
 game_status = None
@@ -65,6 +65,11 @@ async def load_language():
 
 
 client = commands.Bot(command_prefix="-", intents=intents)
+
+
+for folder in os.listdir('cogs'):
+    if os.path.exists(os.path.join('cogs', folder, 'cog.py')):
+        client.load_extension(f'cogs.{folder}.cog')
 
 
 async def game_board():
@@ -262,7 +267,7 @@ async def start(ctx):
     idol = str
     wild_kid = str
 
-    if len(player_list) <= util.config.get_setting('min_players'):
+    if len(player_list) <= config.get_setting('min_players'):
         await ctx.send(get_msg("shortqueue"))
         return
     log(1, "Assigning roles.")

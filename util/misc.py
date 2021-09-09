@@ -1,5 +1,4 @@
 from datetime import datetime
-from util.config import BUILD, COMMIT, VERSION
 
 
 class Colours:
