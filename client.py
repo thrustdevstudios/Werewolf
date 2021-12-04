@@ -25,11 +25,11 @@ LOG_LEVEL = 0
 game_status = None
 player_list = []
 player_dict = {}
-roles = ["villager", "werewolf", "witch", "hunter",
-         "amor", "seer", "bodyguard", "wild_kid"]
+roles = ["villager", "werewolf"]
 session = {
     'is_playing': False,
     'players': OrderedDict(),
+    'werewolves': list,
     'is_day': False,
     'time': {
         'night_elapsed': timedelta(0),
@@ -38,7 +38,6 @@ session = {
     'first_join': 0,
     'gamemode': 0
 }
-special_roles = ["witch", "hunter", "amor", "seer", "bodyguard", "wild_kid"]
 
 
 def get_time():
@@ -138,17 +137,10 @@ async def assign(player: int, role: str):
         role (str): Role-ID found in roles file
     """
     log(0, f"Assigning {role} to {player}")
-    player_dict[player]["role"] = role
+    session["players"][player]["role"] = role
     user = client.get_user(player)
     if role == "werewolf":
-        wolves_list.append(user)
-    elif role == "witch":
-        witch = user
-    elif role == "hunter":
-        hunter = user
-    elif role == "wild_kid":
-        wild_kid = user
-    await dm(user, f"You have been assigned the role **{role}**.")
+        session["werewolves"][user]
 
 
 @client.event
@@ -252,52 +244,21 @@ async def leave(ctx):
 @client.command()
 @has_role(GAME_MASTER)
 async def start(ctx):
-    global game_phase
-    global player_list
-    global wolves_list
-    global witch
-    global hunter
-    global idol
-    global wild_kid
-
-    game_phase = str
-    wolves_list = list
-    witch = str
-    hunter = str
-    idol = str
-    wild_kid = str
-
     if len(player_list) <= config.get_setting('min_players'):
         await ctx.send(get_msg("shortqueue"))
-        return
-    log(1, "Assigning roles.")
+    else:
+        log(1, "Assigning roles...")
+        await client.change_presence(status=nextcord.Status.dnd, activity=nextcord.Game("Werewolf"))
+        max_werewolves = round(len(player_list) // 3.9)
 
-    await client.change_presence(status=nextcord.Status.dnd, activity=nextcord.Game(name="Werewolf"))
-
-    max_werewolves = round(len(player_list) // 3, 9)
-    assigned_specials = []
-
-    for player in player_list:
-        if random.random() < 25:
-            assigned_role = "werewolf"
-            max_werewolves - 1
-            await assign(player, assigned_role)
-            continue
-        elif random.random() < 60:
-            while True:
-                assigned_role = random.choice(special_roles)
-                if assigned_role not in assigned_specials:
-                    await assign(player, assigned_role)
-                    assigned_specials.append(assigned_role)
-                    break
-                elif assigned_role in assigned_specials and len(assigned_specials) << len(special_roles):
-                    continue
-                else:
-                    await assign(player, "villager")
-                    break
-        else:
-            await assign(player, "villager")
-    log(1, f"{len(player_list)} roles assigned. Special roles: {assigned_specials}")
+        for player in player_list:
+            if random.random() < config.get_setting('werewolf_chance') and len(max_werewolves) > 0:
+                max_werewolves - 1
+                await assign(player, 'werewolf')
+                continue
+            else:
+                await assign(player, 'villager')
+        log(1, f'{len(player_list)} roles assigned.')
 
 
 @client.command()
