@@ -1,8 +1,4 @@
-import json
 import os
-import random
-from datetime import datetime, timedelta
-from typing import OrderedDict
 
 import nextcord
 from nextcord.ext import commands
