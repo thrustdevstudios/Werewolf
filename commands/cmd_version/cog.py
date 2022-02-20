@@ -1,6 +1,7 @@
+import os
+
 import nextcord
 from nextcord.ext import commands
-import os
 
 
 class VersionCommand(commands.Cog, name='VersionCommand'):
