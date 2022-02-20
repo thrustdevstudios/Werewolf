@@ -6,7 +6,7 @@ class PingCommand(commands.Cog, name='PingCommand'):
     def __init__(self, client: commands.Bot):
         self.client = client
     
-    @commands.commands(name='ping')
+    @commands.command(name='ping')
     async def ping(self, ctx: commands.Context):
         """A command which returns a ping response.
         Usage:
