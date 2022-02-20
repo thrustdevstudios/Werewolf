@@ -2,7 +2,6 @@ import os
 
 import nextcord
 from nextcord.ext import commands
-from nextcord.ext.commands.core import has_role
 
 
 intents = nextcord.Intents.default()
