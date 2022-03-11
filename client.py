@@ -10,7 +10,7 @@ intents.members = True
 client = commands.Bot(command_prefix="-", intents=intents)
 
 
-@client.event()
+@client.event
 async def on_ready():
     for folder in os.listdir('commands'):
         if os.path.exists(os.path.join('commands', folder, 'cog.py')):
