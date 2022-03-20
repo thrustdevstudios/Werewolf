@@ -7,7 +7,12 @@ from nextcord.ext import commands
 intents = nextcord.Intents.default()
 intents.members = True
 
-client = commands.Bot(command_prefix="-", intents=intents)
+if os.getenv('CLIENT') = 'production':
+    prefix = '-'
+else:
+    prefix = '.'
+
+client = commands.Bot(command_prefix=prefix, intents=intents)
 
 
 @client.event
