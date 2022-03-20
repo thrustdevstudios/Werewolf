@@ -8,7 +8,7 @@ from nextcord.ext.commands.core import has_role
 intents = nextcord.Intents.default()
 intents.members = True
 
-if os.getenv('CLIENT') = 'production':
+if os.getenv('CLIENT') == 'production':
     prefix = '-'
 else:
     prefix = '.'
