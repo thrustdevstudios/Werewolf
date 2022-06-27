@@ -1,10 +1,10 @@
 import os
 
-import nextcord
-from nextcord.ext import commands
+import discord
+from discord.ext import commands
 
 
-intents = nextcord.Intents.default()
+intents = discord.Intents.default()
 intents.members = True
 
 if os.getenv('CLIENT') == 'production':
