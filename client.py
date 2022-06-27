@@ -15,9 +15,6 @@ else:
 client = commands.Bot(command_prefix=prefix, intents=intents)
 
 
-client = commands.Bot(command_prefix=prefix, intents=intents)
-
-
 @client.event
 async def on_ready():
     for folder in os.listdir('commands'):
