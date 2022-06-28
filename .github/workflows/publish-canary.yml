@@ -64,3 +64,5 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           pass: ${{ secrets.SSH_PASSWORD }}
           command: cd /home/tds && sh werewolf-canary-deploy.sh
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: cd /home/tds && sh werewolf-canary-deploy.sh
