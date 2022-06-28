@@ -62,4 +62,5 @@ jobs:
           host: 'luftways.com'
           user: 'tds'
           key: ${{ secrets.SSH_KEY }}
+          password: ${{ secrets.SSH_PASSWORD }}
           script: cd /home/tds && sh werewolf-deploy.sh
