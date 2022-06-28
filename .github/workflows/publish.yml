@@ -60,5 +60,5 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: 'luftways.com'
-          key: ${{ secrets.SSH_KEY }}
+          pass: ${{ secrets.SSH_PASSWORD }}
           script: cd /home/tds && sh werewolf-deploy.sh
