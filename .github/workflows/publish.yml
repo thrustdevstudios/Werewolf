@@ -57,12 +57,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to server
-        uses: appleboy/ssh-action@master
+        uses: fifsky/ssh-action@master
         with:
           host: 'luftways.com'
-          username: 'tds'
-          password: ${{ secrets.SSH_PASSWORD }}
-          port: 22
-          script: |
-          cd /home/tds
-          sh werewolf-deploy.sh
+          key: ${{ secrets.SSH_KEY }}
+          script: cd /home/tds && sh werewolf-deploy.sh
