@@ -57,7 +57,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to server
-        uses: fifsky/ssh-action@master
+        uses: appleboy/ssh-action@master
         with:
           host: 'luftways.com'
           pass: ${{ secrets.SSH_PASSWORD }}
