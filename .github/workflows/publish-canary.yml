@@ -60,5 +60,7 @@ jobs:
         uses: fifsky/ssh-action@master
         with:
           host: 'luftways.com'
+          user: 'tds'
+          key: ${{ secrets.SSH_KEY }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: cd /home/tds && sh werewolf-canary-deploy.sh
