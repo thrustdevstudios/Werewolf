@@ -60,9 +60,5 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: 'luftways.com'
-          username: 'tds'
-          password: ${{ secrets.SSH_PASSWORD }}
-          port: 22
-          script: |
-           cd /home/tds
-           sh werewolf-canary-deploy.sh
+          key: ${{ secrets.SSH_KEY }}
+          script: cd /home/tds && sh werewolf-canary-deploy.sh
