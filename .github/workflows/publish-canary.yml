@@ -57,9 +57,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to server
-        uses: fifsky/ssh-action@master
+        uses: appleboy/ssh-action@master
         with:
           host: 'luftways.com'
-          user: 'tds'
-          key: ${{ secrets.SSH_KEY }}
-          script: cd /home/tds && sh werewolf-canary-deploy.sh
+          username: 'tds'
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: 22
+          script: |
+           cd /home/tds
+           sh werewolf-canary-deploy.sh
