@@ -53,11 +53,14 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: §{{ steps.meta.outputs.tags }}
-  prod-deploy:
-    needs: [docker-build-test]
+  deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Deployment Request
-      uses: wei/curl@v1
-      with:
-        args: -u deploy:${{ secrets.DEPLOYMENT_PASSWORD }} -X GET http://luftways.com/werewolf-deploy.php
+      - name: Deploy to server
+        uses: fifsky/ssh-action@master
+        with:
+          host: 'luftways.com'
+          user: 'tds'
+          key: ${{ secrets.SSH_KEY }}
+          pass: ${{ secrets.SSH_PASSWORD }}
+          command: cd /home/tds && sh werewolf-deploy.sh
