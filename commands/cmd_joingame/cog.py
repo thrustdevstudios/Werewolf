@@ -26,6 +26,8 @@ class JoinGameCommand(commands.Cog, name='JoinGameCommand'):
             await ctx.send(f'{ctx.message.author.mention} there was an error trying to join the game')
         else:
             await ctx.send(f'{ctx.message.author.mention} joined the game')
+        
+        await ctx.send(handler.players)
     
     @joingame.error
     async def joingame_error(self, ctx: commands.Context, error):
