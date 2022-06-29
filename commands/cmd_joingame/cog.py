@@ -11,6 +11,14 @@ class JoinGameCommand(commands.Cog, name='JoinGameCommand'):
     @commands.command(name='joingame')
     @commands.guild_only()
     async def joingame(self, ctx: commands.Context):
+        """A command which lets players join an open lobby
+
+        Usage:
+        ```
+        -joingame
+        ```
+        """
+
         handler = GameHandler()
         try:
             handler.addplayer(ctx)
