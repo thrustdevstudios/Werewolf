@@ -15,6 +15,9 @@ class GameHandler():
     def __init__(self):
         self.is_open = False
         self.num_players = 0
+    
+    def getplayers(self):
+        return self.players
 
     def open(self):
         self.is_open = True
