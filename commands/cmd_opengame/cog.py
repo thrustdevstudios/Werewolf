@@ -10,6 +10,13 @@ class OpenGameCommand(commands.Cog, name='OpenGameCommand'):
     @commands.command(name='opengame')
     @commands.guild_only
     async def opengame(self, ctx: commands.Context):
+        """A command which opens a game lobby.
+        Usage:
+        ```
+        -version
+        ```
+        """
+
         handler = GameHandler()
         handler.open()
         await ctx.send(f'{ctx.message.author.mention} opened a game')
@@ -20,4 +27,3 @@ class OpenGameCommand(commands.Cog, name='OpenGameCommand'):
             await ctx.send(f'{ctx.message.author.mention} you have to be in a server to run this command')
         else:
             await ctx.send(f'{ctx.message.author.mention} something went wrong')
-
