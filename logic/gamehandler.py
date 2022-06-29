@@ -28,7 +28,7 @@ async def addplayer(ctx: commands.Context, user: discord.User):
     if not data.get('is_open'):
         await ctx.send(f'{ctx.author.mention} there is no open game')
         return
-    elif not data['players'] == None:
+    elif not data['players'][user.id] == None:
         await ctx.send(f'{ctx.author.mention} is already in the game')
     data['players'][user.id] = {
         'name': user.name,
