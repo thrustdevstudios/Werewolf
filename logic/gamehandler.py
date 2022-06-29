@@ -35,3 +35,10 @@ async def addplayer(ctx: commands.Context, user: discord.User):
         'role': None
     }
     await ctx.send(f'{ctx.author.mention} joined the game')
+
+async def removeplayer(ctx: commands.Context, user: discord.User):
+    global data
+    try:
+        del data['players'][user.id]
+    except:
+        await ctx.send(f'{ctx.author.mention} something went wrong')
