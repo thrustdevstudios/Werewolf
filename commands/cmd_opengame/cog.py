@@ -27,3 +27,7 @@ class OpenGameCommand(commands.Cog, name='OpenGameCommand'):
             await ctx.send(f'{ctx.message.author.mention} you have to be in a server to run this command')
         else:
             await ctx.send(f'{ctx.message.author.mention} something went wrong')
+
+
+def setup(client: commands.Bot):
+    client.add_cog(OpenGameCommand(client))
