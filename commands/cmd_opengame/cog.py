@@ -23,7 +23,7 @@ class OpenGameCommand(commands.Cog, name='OpenGameCommand'):
     
     @opengame.error
     async def opengame_error(self, ctx: commands.Context, error):
-        if isinstance(error, commands.GuildNotFound):
+        if isinstance(error, commands.NoPrivateMessage):
             await ctx.send(f'{ctx.message.author.mention} you have to be in a server to run this command')
         else:
             await ctx.send(f'{ctx.message.author.mention} something went wrong')
