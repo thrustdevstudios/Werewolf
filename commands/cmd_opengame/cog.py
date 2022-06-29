@@ -1,4 +1,3 @@
-from cgitb import handler
 import discord
 from discord.ext import commands
 from logic.gamehandler import GameHandler
