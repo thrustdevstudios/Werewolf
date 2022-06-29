@@ -33,6 +33,8 @@ class GameHandler():
             'name': ctx.author.name,
             'role': None
         }
+
+        print(self.players)
     
     def start(self):
         self.num_players = len(self.players)
