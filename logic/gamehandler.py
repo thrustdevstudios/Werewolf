@@ -42,3 +42,11 @@ async def removeplayer(ctx: commands.Context, user: discord.User):
         del data['players'][user.id]
     except:
         await ctx.send(f'{ctx.author.mention} something went wrong')
+
+async def startgame(ctx: commands.Context):
+    global data
+    if data['is_running']:
+        await ctx.send(f'{ctx.author.mention} is already running')
+        return
+    data['is_running'] = True
+    await ctx.send(f'{ctx.author.mention} started the game')
