@@ -8,7 +8,7 @@ class OpenGameCommand(commands.Cog, name='OpenGameCommand'):
         self.client = client
     
     @commands.command(name='opengame')
-    @commands.guild_only
+    @commands.guild_only()
     async def opengame(self, ctx: commands.Context):
         """A command which opens a game lobby.
         Usage:
