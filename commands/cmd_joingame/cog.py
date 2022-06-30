@@ -19,7 +19,7 @@ class JoinGameCommand(commands.Cog, name='JoinGameCommand'):
         ```
         """
 
-        handler.addplayer(ctx)
+        await handler.addplayer(ctx)
     
     @joingame.error
     async def joingame_error(self, ctx: commands.Context, error):
