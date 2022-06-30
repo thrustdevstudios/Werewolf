@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from logic.gamehandler import GameHandler
+from logic import gamehandler as handler
 
 
 class OpenGameCommand(commands.Cog, name='OpenGameCommand'):
@@ -17,9 +17,7 @@ class OpenGameCommand(commands.Cog, name='OpenGameCommand'):
         ```
         """
 
-        handler = GameHandler()
-        handler.open()
-        await ctx.send(f'{ctx.message.author.mention} opened a game')
+        await handler.opengame(ctx)
     
     @opengame.error
     async def opengame_error(self, ctx: commands.Context, error):

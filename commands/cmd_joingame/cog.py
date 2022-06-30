@@ -1,7 +1,7 @@
 from calendar import c
 import discord
 from discord.ext import commands
-from logic.gamehandler import GameHandler
+from logic import gamehandler as handler
 
 
 class JoinGameCommand(commands.Cog, name='JoinGameCommand'):
@@ -19,13 +19,7 @@ class JoinGameCommand(commands.Cog, name='JoinGameCommand'):
         ```
         """
 
-        handler = GameHandler()
-        try:
-            handler.addplayer(ctx)
-        except:
-            await ctx.send(f'{ctx.message.author.mention} there was an error trying to join the game')
-        else:
-            await ctx.send(f'{ctx.message.author.mention} joined the game')
+        handler.addplayer(ctx)
     
     @joingame.error
     async def joingame_error(self, ctx: commands.Context, error):
