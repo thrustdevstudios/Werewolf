@@ -76,5 +76,8 @@ async def startgame(ctx: commands.Context):
     if data['is_running']:
         await ctx.send(f'{ctx.author.mention} is already running')
         return
+    elif len(data['players']) << 6:
+        ctx.reply('not enough players')
+        return
     data['is_running'] = True
     await ctx.reply('started the game')
