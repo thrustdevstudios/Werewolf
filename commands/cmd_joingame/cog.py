@@ -1,4 +1,3 @@
-from calendar import c
 import discord
 from discord.ext import commands
 from logic import gamehandler as handler
