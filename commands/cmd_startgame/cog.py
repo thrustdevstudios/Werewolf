@@ -21,7 +21,7 @@ class StartGameCommand(commands.Cog, name='StartGameCommand'):
         await handler.startgame(ctx)
     
     @startgame
-    async def startgame_error(self, ctx: commands.Context, error: commands.Error):
+    async def startgame_error(self, ctx: commands.Context, error):
         await ctx.reply(f'error: {error.message}')
 
 
