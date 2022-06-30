@@ -3,60 +3,78 @@ from random import choice
 import discord
 from discord.ext import commands
 
+data = {
+    'is_open': False,
+    'is_running': False,
+    'min_players': 6,
+    'players': {}
+}
 
-class GameHandler():
-    is_open = bool
-    is_running = bool
-    players = dict
-    num_players = int
-    num_wolves = int
-    max_wolves = int
+async def opengame(ctx: commands.Context):
+    global data
+    if data['is_open']:
+        await ctx.reply('game already open')
+        return
+    data['is_open'] = True
+    await ctx.send(f'{ctx.author.mention} opened a game')
 
-    def __init__(self):
-        self.is_open = False
-        self.num_players = 0
+async def closegame(ctx: commands.Context):
+    global data
+    if not data['is_open']:
+        await ctx.reply('there is no open game')
+        return
+    data['is_open'] = False
+    await ctx.send(f'{ctx.author.mention} closed the game')
+
+async def addplayer(ctx: commands.Context):
+    global data
+    if ctx.author.id in data['players']:
+        await ctx.reply('player already exists')
+        return
     
-    def getplayers(self):
-        return self.players
+    data['players'][ctx.author.id] = {
+        'name': ctx.author.name,
+        'role': None
+    }
 
-    def open(self):
-        self.is_open = True
+    await ctx.send(f'{ctx.author.mention} joined the game')
 
-    def close(self):
-        self.is_open = False
+async def removeplayer(ctx: commands.Context):
+    global data
+    try:
+        del data['players'][ctx.author.id]
+    except:
+        await ctx.send(f'{ctx.author.mention} something went wrong')
 
-    def addplayer(self, ctx: commands.Context):
-        if not self.is_open:
-            return
-        
-        self.players[ctx.author.id] = {
-            'name': ctx.author.name,
-            'role': None
-        }
+async def assign_roles(ctx: commands.Context):
+    global data
 
-        print(self.players)
+    num_players = len(data['players'])
+    num_werewolves = round(num_players // 3)
+
+    for player in data['players']:
+        data['players'][player]['role'] = None
     
-    def start(self):
-        self.num_players = len(self.players)
-        if self.num_players << 6:
-            return
-        
-        self.assign_roles()
-        self.is_running = True
-        
-    def assign_roles(self):
-        self.num_wolves = 0
-        self.max_wolves = round(self.num_players // 3)
-        for player in self.players:
-            role = choice(['villager', 'wolf'])
-            if role == 'wolf' and self.max_wolves >> 0:
-                self.num_wolves += 1
-                self.max_wolves -= 1
-                self.setrole(player=player, role=role)
+    await ctx.send(f'assigning {num_werewolves} werewolves.')
 
-            else:
-                role = 'villager'
-                self.setrole(player=player, role=role)
-        
-    def setrole(self, player, role):
-        self.players[player]['role'] = role
+    werewolves_assigned = 0
+    players_list = list(data['players'].keys())
+    while werewolves_assigned < num_werewolves:
+        for player in players_list:
+            role = choice(['villager', 'werewolf'])
+            data['players'][player]['role'] = role
+            if role == 'werewolf':
+                werewolves_assigned += 1
+            players_list.remove(player)
+    
+    for player in list(data['players'].keys()):
+        user = discord.Client.get_user(player)
+        await user.send(f'you have been assigned the role {data["players"][player]["role"]}')
+
+async def startgame(ctx: commands.Context):
+    global data
+    if data['is_running']:
+        await ctx.send(f'{ctx.author.mention} is already running')
+        return
+    data['is_running'] = True
+    await ctx.reply('started the game')
