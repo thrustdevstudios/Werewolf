@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from logic import gamehandler
+from games.werewolf import gamehandler
 
 
 class OpenGameCommand(commands.Cog, name='OpenGameCommand'):
