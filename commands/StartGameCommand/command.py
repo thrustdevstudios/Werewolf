@@ -1,11 +1,12 @@
 import discord
 from discord.ext import commands
-from logic import gamehandler as handler
+from logic import gamehandler
 
 
 class StartGameCommand(commands.Cog, name='StartGameCommand'):
-    def __init__(self, client: commands.Bot):
+    def __init__(self, client: commands.Bot, handler: gamehandler.GameHandler):
         self.client = client
+        self.handler = handler
     
     @commands.command(name='startgame',)
     @commands.guild_only()
@@ -18,12 +19,12 @@ class StartGameCommand(commands.Cog, name='StartGameCommand'):
         ```
         """
 
-        await handler.startgame(ctx)
+        await self.handler.startgame(ctx)
     
     @startgame
     async def startgame_error(self, ctx: commands.Context, error):
-        await ctx.reply(f'error: {error.message}')
+        await ctx.reply(f'error: {error}')
 
 
-def setup(client: commands.Bot):
-    client.add_cog(StartGameCommand(client))
+def register(client: commands.Bot, handler: gamehandler.GameHandler):
+    client.add_cog(StartGameCommand(client=client, handler=handler))

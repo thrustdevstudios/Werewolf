@@ -1,11 +1,12 @@
 import discord
 from discord.ext import commands
-from logic import gamehandler as handler
+from logic import gamehandler
 
 
 class OpenGameCommand(commands.Cog, name='OpenGameCommand'):
-    def __init__(self, client: commands.Bot):
+    def __init__(self, client: commands.Bot, handler: gamehandler.GameHandler):
         self.client = client
+        self.handler = handler
     
     @commands.command(name='opengame')
     @commands.guild_only()
@@ -17,7 +18,7 @@ class OpenGameCommand(commands.Cog, name='OpenGameCommand'):
         ```
         """
 
-        await handler.opengame(ctx)
+        await self.handler.opengame(ctx)
     
     @opengame.error
     async def opengame_error(self, ctx: commands.Context, error):
@@ -27,5 +28,5 @@ class OpenGameCommand(commands.Cog, name='OpenGameCommand'):
             await ctx.send(f'{ctx.message.author.mention} something went wrong')
 
 
-def setup(client: commands.Bot):
-    client.add_cog(OpenGameCommand(client))
+def setup(client: commands.Bot, handler: gamehandler.GameHandler):
+    client.add_cog(OpenGameCommand(client=client, handler=handler))

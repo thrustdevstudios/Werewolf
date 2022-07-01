@@ -1,11 +1,12 @@
 import discord
 from discord.ext import commands
-from logic import gamehandler as handler
+from logic import gamehandler
 
-
+@commands.guild_only()
 class JoinGameCommand(commands.Cog, name='JoinGameCommand'):
-    def __init__(self, client: commands.Bot):
+    def __init__(self, client: commands.Bot, handler: gamehandler.GameHandler):
         self.client = client
+        self.handler = handler
     
     @commands.command(name='joingame')
     @commands.guild_only()
@@ -18,7 +19,7 @@ class JoinGameCommand(commands.Cog, name='JoinGameCommand'):
         ```
         """
 
-        await handler.addplayer(ctx)
+        await self.handler.addplayer(ctx)
     
     @joingame.error
     async def joingame_error(self, ctx: commands.Context, error):
@@ -28,5 +29,5 @@ class JoinGameCommand(commands.Cog, name='JoinGameCommand'):
             await ctx.send(f'{ctx.message.author.mention} something went wrong: {error}')
 
 
-def setup(client: commands.Bot):
-    client.add_cog(JoinGameCommand(client))
+def register(client: commands.Bot, handler: gamehandler.GameHandler):
+    client.add_cog(JoinGameCommand(client=client, handler=handler))
