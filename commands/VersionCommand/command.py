@@ -2,7 +2,6 @@ import os
 
 import discord
 from discord.ext import commands
-from logic import gamehandler
 
 
 class VersionCommand(commands.Cog, name='VersionCommand'):
@@ -25,5 +24,5 @@ class VersionCommand(commands.Cog, name='VersionCommand'):
         await ctx.send(f'Current version: {self.VERSION} ({self.COMMIT}) Build: {self.BUILD}')
 
 
-def register(client: commands.Bot, handler: gamehandler.GameHandler):
+def register(client: commands.Bot):
     client.add_cog(VersionCommand(client))

@@ -4,7 +4,7 @@ import os
 import discord
 from discord.ext import commands
 
-from logic.gamehandler import GameHandler
+from games.werewolf.gamehandler import GameHandler
 
 intents = discord.Intents.default()
 intents.members = True
@@ -21,7 +21,7 @@ async def register_commands():
     for folder in os.listdir('commands'):
         module = importlib.import_module(f'commands.{folder}.command')
         command_class = getattr(module, f'{folder}')
-        await module.register(client=client, handler=handler)
+        await module.register(client=client)
 
 @client.event
 async def on_ready():
