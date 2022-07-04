@@ -4,7 +4,7 @@ from discord.ext import commands
 from player import Player
 
 
-class GameHandler():
+class GameHandler(commands.Cog, name='Werewolf'):
     data = {
         'is_open': False,
         'is_running': False,
@@ -32,3 +32,6 @@ class GameHandler():
         user = self.client.fetch_user(int(player))
         player = Player(user=user)
         self.data['players'][user.id] = player
+
+def register(client: commands.Bot):
+    client.add_cog(GameHandler(client))
