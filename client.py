@@ -25,7 +25,7 @@ async def register_commands():
     
 async def register_games():
     for folder in os.listdir('games'):
-        handler = importlib.import_module(f'games.{folder}.gamehandler'       )
+        handler = importlib.import_module(f'games.{folder}.gamehandler')
         game_class = getattr(handler, f'{folder}')
         await handler.register(client=client)
 
