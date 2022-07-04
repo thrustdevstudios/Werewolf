@@ -20,7 +20,7 @@ handler = GameHandler(client=client)
 async def register_commands():
     for folder in os.listdir('commands'):
         module = importlib.import_module(f'commands.{folder}.command')
-        await module.register(client=client)
+        module.register(client=client)
     
 async def register_games():
     for folder in os.listdir('games'):
