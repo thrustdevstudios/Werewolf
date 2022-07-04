@@ -29,7 +29,8 @@ async def register_games():
 
 @client.event
 async def on_ready():
-    register_commands()
+    await register_commands()
+    await register_games()
 
 
 TOKEN = os.getenv('CLIENT_TOKEN')
