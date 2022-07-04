@@ -28,5 +28,5 @@ class OpenGameCommand(commands.Cog, name='OpenGameCommand'):
             await ctx.send(f'{ctx.message.author.mention} something went wrong')
 
 
-def setup(client: commands.Bot, handler: gamehandler.GameHandler):
+def register(client: commands.Bot, handler: gamehandler.GameHandler):
     client.add_cog(OpenGameCommand(client=client, handler=handler))
