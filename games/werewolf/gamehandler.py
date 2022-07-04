@@ -1,3 +1,6 @@
+import importlib
+import os
+
 import discord
 from discord.ext import commands
 
@@ -33,5 +36,10 @@ class GameHandler(commands.Cog, name='Werewolf'):
         player = Player(user=user)
         self.data['players'][user.id] = player
 
-def register(client: commands.Bot):
-    client.add_cog(GameHandler(client))
+async def register(client: commands.Bot):
+    handler = GameHandler(client)
+    client.add_cog(handler)
+    
+    for folder in os.listdir('games/werewolf/commands'):
+        module = importlib.import_module(f'games.werewolf.{folder}.command')
+        await module.register(client=client, handler=handler)
