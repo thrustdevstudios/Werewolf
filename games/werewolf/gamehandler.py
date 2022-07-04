@@ -4,7 +4,7 @@ import os
 import discord
 from discord.ext import commands
 
-from player import Player
+from games.werewolf.player import Player
 
 
 class GameHandler(commands.Cog, name='Werewolf'):
