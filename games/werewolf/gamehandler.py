@@ -41,5 +41,5 @@ async def register(client: commands.Bot):
     client.add_cog(handler)
     
     for folder in os.listdir('games/werewolf/commands'):
-        module = importlib.import_module(f'games.werewolf.{folder}.command')
+        module = importlib.import_module(f'games.werewolf.commands.{folder}.command')
         module.register(client=client, handler=handler)
