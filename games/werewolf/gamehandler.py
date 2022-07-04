@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands
 
+from player import Player
+
 
 class GameHandler():
     data = {
@@ -28,3 +30,5 @@ class GameHandler():
     
     async def add_player(self, player: str):
         user = self.client.fetch_user(int(player))
+        player = Player(user=user)
+        self.data['players'][user.id] = player
