@@ -18,7 +18,7 @@ class OpenGameCommand(commands.Cog, name='OpenGameCommand'):
         ```
         """
 
-        await self.handler.opengame(ctx)
+        await self.handler.open_game(ctx)
     
     @opengame.error
     async def opengame_error(self, ctx: commands.Context, error):

@@ -35,6 +35,14 @@ class GameHandler(commands.Cog, name='Werewolf'):
         user = self.client.fetch_user(int(player))
         player = Player(user=user)
         self.data['players'][user.id] = player
+    
+    async def open_game(self, ctx: commands.Context):
+        if self.data['is_open']:
+            ctx.reply('game already open')
+            return
+        else:
+            self.data['is_open'] = True
+            await ctx.send(f'{ctx.author.mention} opened a game')
 
 async def register(client: commands.Bot):
     handler = GameHandler(client)
