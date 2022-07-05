@@ -43,6 +43,13 @@ class GameHandler(commands.Cog, name='Werewolf'):
             self.data['players'][user.id] = player
             return True
 
+    async def remove_player(self, user: discord.User) -> bool:
+        if not user.id in self.data['players'].keys():
+            return False
+        else:
+            del self.data['players'][user.id]
+            return True
+
     async def open_game(self, ctx: commands.Context):
         if self.data['is_open']:
             ctx.reply('game already open')
