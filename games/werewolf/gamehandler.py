@@ -31,10 +31,13 @@ class GameHandler(commands.Cog, name='Werewolf'):
     async def get_player(self, player: str) -> dict:
         return self.data['players'][player]
     
-    async def add_player(self, player: str):
-        user = self.client.fetch_user(int(player))
-        player = Player(user=user)
-        self.data['players'][user.id] = player
+    async def add_player(self, user: discord.User) -> bool:
+        if user.id in self.data['players'].keys():
+            return False
+        else:
+            player = Player(user=user)
+            self.data['players'][user.id] = player
+            return True
     
     async def open_game(self, ctx: commands.Context):
         if self.data['is_open']:

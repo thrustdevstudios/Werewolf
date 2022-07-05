@@ -19,7 +19,10 @@ class JoinGameCommand(commands.Cog, name='JoinGameCommand'):
         ```
         """
 
-        await self.handler.addplayer(ctx)
+        if await self.handler.add_player(ctx.author):
+            await ctx.send(f'{ctx.author.mention} joined the game')
+        else:
+            await ctx.reply('player already exists')
     
     @joingame.error
     async def joingame_error(self, ctx: commands.Context, error):
