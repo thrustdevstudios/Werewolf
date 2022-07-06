@@ -24,7 +24,7 @@ class JoinGameCommand(commands.Cog, name='JoinGameCommand'):
 
         if await self.handler.add_player(ctx.author):
             num_players = len(await self.handler.get_players())
-            await ctx.send(lang.get('joinlobby').format(ctx.author, num_players))
+            await ctx.send(lang.get('joinlobby').format(ctx.author.mention, num_players))
         else:
             await ctx.reply(lang.get('alreadyin'))
 
