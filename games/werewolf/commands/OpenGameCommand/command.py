@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands
+
 from games.werewolf import gamehandler
+import lang
 
 
 class OpenGameCommand(commands.Cog, name='OpenGameCommand'):
@@ -23,9 +25,9 @@ class OpenGameCommand(commands.Cog, name='OpenGameCommand'):
     @opengame.error
     async def opengame_error(self, ctx: commands.Context, error):
         if isinstance(error, commands.NoPrivateMessage):
-            await ctx.send(f'{ctx.message.author.mention} you have to be in a server to run this command')
+            await ctx.reply(lang.get('noprivatemessage'))
         else:
-            await ctx.send(f'{ctx.message.author.mention} something went wrong')
+            await ctx.reply(lang.get('error').format(error))
 
 
 def register(client: commands.Bot, handler: gamehandler.GameHandler):

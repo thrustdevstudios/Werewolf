@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands
+
 from games.werewolf import gamehandler
+import lang
 
 
 class StartGameCommand(commands.Cog, name='StartGameCommand'):
