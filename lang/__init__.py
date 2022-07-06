@@ -1,1 +1,1 @@
-from language_loader import *
+from lang.language_loader import *
