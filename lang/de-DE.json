@@ -5,6 +5,9 @@
     "error": [
         "Da ist irgendetwas schief gelaufen: {0}"
     ],
+    "assigningwolves": [
+        "Rollen werden zugewiesen. Es gibt **{0}** Werwölfe"
+    ],
     "shortqueue": [
         "Es sind nicht genug Spieler in der Warteschlange.",
         "Es fehlen noch {0} Spieler."
