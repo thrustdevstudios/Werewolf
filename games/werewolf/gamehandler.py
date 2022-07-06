@@ -52,7 +52,7 @@ class GameHandler(commands.Cog, name='Werewolf'):
 
     async def open_game(self, ctx: commands.Context):
         if self.data['is_open']:
-            ctx.reply('game already open')
+            await ctx.reply('game already open')
             return
         else:
             self.data['is_open'] = True
