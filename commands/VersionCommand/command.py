@@ -21,8 +21,8 @@ class VersionCommand(commands.Cog, name='VersionCommand'):
         ```
         """
 
-        await ctx.send(f'Current version: {self.VERSION} ({self.COMMIT}) Build: {self.BUILD}')
+        await ctx.send(f'{self.VERSION} ({self.COMMIT}) Build: {self.BUILD}')
 
 
-def setup(client: commands.Bot):
+def register(client: commands.Bot):
     client.add_cog(VersionCommand(client))

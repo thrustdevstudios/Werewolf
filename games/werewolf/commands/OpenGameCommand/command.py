@@ -1,11 +1,14 @@
 import discord
 from discord.ext import commands
-from logic import gamehandler as handler
+
+from games.werewolf import gamehandler
+import lang
 
 
 class OpenGameCommand(commands.Cog, name='OpenGameCommand'):
-    def __init__(self, client: commands.Bot):
+    def __init__(self, client: commands.Bot, handler: gamehandler.GameHandler):
         self.client = client
+        self.handler = handler
     
     @commands.command(name='opengame')
     @commands.guild_only()
@@ -17,15 +20,15 @@ class OpenGameCommand(commands.Cog, name='OpenGameCommand'):
         ```
         """
 
-        await handler.opengame(ctx)
+        await self.handler.open_game(ctx)
     
     @opengame.error
     async def opengame_error(self, ctx: commands.Context, error):
         if isinstance(error, commands.NoPrivateMessage):
-            await ctx.send(f'{ctx.message.author.mention} you have to be in a server to run this command')
+            await ctx.reply(lang.get('noprivatemessage'))
         else:
-            await ctx.send(f'{ctx.message.author.mention} something went wrong')
+            await ctx.reply(lang.get('error').format(error))
 
 
-def setup(client: commands.Bot):
-    client.add_cog(OpenGameCommand(client))
+def register(client: commands.Bot, handler: gamehandler.GameHandler):
+    client.add_cog(OpenGameCommand(client=client, handler=handler))
