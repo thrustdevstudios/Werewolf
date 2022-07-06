@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands
 
+import lang
+
 
 class PingCommand(commands.Cog, name='PingCommand'):
     def __init__(self, client: commands.Bot):
@@ -16,7 +18,7 @@ class PingCommand(commands.Cog, name='PingCommand'):
         ```
         """
 
-        await ctx.reply('Pong!')
+        await ctx.reply(lang.get('ping'))
 
 
 def register(client: commands.Bot):
