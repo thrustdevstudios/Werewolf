@@ -22,7 +22,7 @@ class CloseGameCommand(commands.Cog, name='CloseGameCommand'):
         """
 
         if await self.handler.close_game():
-            await ctx.reply(lang.get('gameclosed'))
+            await ctx.reply(lang.get('gameclosed').format(ctx.author.mention))
         else:
             await ctx.reply(lang.get('error').format('unknown error'))
 
