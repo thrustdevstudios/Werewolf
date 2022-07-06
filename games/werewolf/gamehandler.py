@@ -73,12 +73,13 @@ class GameHandler(commands.Cog, name='Werewolf'):
             self.data['is_open'] = True
             await ctx.send(f'{ctx.author.mention} opened a game')
     
-    async def close_game(self, ctx: commands.Context):
+    async def close_game(self) -> bool:
         if not self.data['is_open']:
-            await ctx.reply(lang.get('gamenotfound'))
+            return False
         else:
             self.data['is_open'] = False
             self.data['players'].clear()
+            return True
 
     async def start_game(self, ctx: commands.Context) -> bool:
         if not ctx.author.id in self.data['players'].keys():

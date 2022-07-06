@@ -8,6 +8,12 @@
     "assigningwolves": [
         "Rollen werden zugewiesen. Es gibt **{0}** Werwölfe"
     ],
+    "gameopened": [
+        "**{0}** hat eine Lobby geöffnet."
+    ],
+    "gameclosed": [
+        "**{0}** hat die Lobby geschlossen."
+    ],
     "shortqueue": [
         "Es sind nicht genug Spieler in der Warteschlange.",
         "Es fehlen noch {0} Spieler."
