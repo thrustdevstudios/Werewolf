@@ -1,10 +1,12 @@
 import importlib
 import os
+from random import choice
 
 import discord
 from discord.ext import commands
 
 from games.werewolf.player import Player
+import lang
 
 
 class GameHandler(commands.Cog, name='Werewolf'):
@@ -19,9 +21,22 @@ class GameHandler(commands.Cog, name='Werewolf'):
     def __init__(self, client: commands.Bot):
         self.client = client
 
-    async def __assign_roles(self):
-        # TODO
-        pass
+    async def __assign_roles(self, ctx: commands.Context):
+        num_players = len(self.data['players'])
+        num_werewolves = num_players // 3
+
+        await ctx.send(lang.get('assigningwolves').format(num_werewolves))
+
+        werewolves_assigned = 0
+        players_list = list(self.data['players'])
+
+        while werewolves_assigned < num_werewolves:
+            for player in players_list:
+                role = choice(['villager', 'werewolf'])
+                self.data['players'][player].set_role(role)
+                if role == 'werewolf':
+                    werewolves_assigned += 1
+                players_list.remove(player)
 
     async def is_open(self) -> bool:
         return self.data['is_open']
@@ -69,7 +84,7 @@ class GameHandler(commands.Cog, name='Werewolf'):
             await ctx.reply('not enough players to start a game')
         else:
             self.data['is_running'] = True
-            await self.__assign_roles()
+            await self.__assign_roles(ctx=ctx)
 
 
 async def register(client: commands.Bot):
