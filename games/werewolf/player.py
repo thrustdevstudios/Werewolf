@@ -19,6 +19,9 @@ class Player():
     
     def get_role(self) -> str:
         return self.role
+    
+    def set_role(self, role: str) -> None:
+        self.role = role
 
     def get_alive(self) -> bool:
         return self.is_alive
