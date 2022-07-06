@@ -25,6 +25,9 @@
     "noprivatemessage": [
         "Du musst dazu in einem Server sein."
     ],
+    "gamenotfound": [
+        "Es wurde keine offene Lobby gefunden."
+    ],
     "joinlobby": [
         "**{0}** ist nun mit von der Partie. Willkommen!",
         "Mit **{0}** sind wir {1}.",
