@@ -2,6 +2,9 @@
     "ping": [
         "Pong!"
     ],
+    "error": [
+        "Da ist irgendetwas schief gelaufen: {0}"
+    ],
     "shortqueue": [
         "Es sind nicht genug Spieler in der Warteschlange.",
         "Es fehlen noch {0} Spieler."
@@ -15,6 +18,9 @@
     "alreadyin": [
         "Du bist schon in der Warteschlange!",
         "Du bist schon drin!"
+    ],
+    "noprivatemessage": [
+        "Du musst dazu in einem Server sein."
     ],
     "joinlobby": [
         "**{0}** ist nun mit von der Partie. Willkommen!",
