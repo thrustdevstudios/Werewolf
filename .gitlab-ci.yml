@@ -1,18 +1,22 @@
+image: alpine:latest
+
 deploy-canary:
-  environment:
-    name: canary
-  before-script:
+  stage: deploy
+  before_script:
   - 'command -v ssh-agent >/dev/null || ( apk add --update openssh )' 
   - eval $(ssh-agent -s)
   - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
   - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
-  - ssh-keyscan luftways.com >> ~/.ssh/known_hosts
+  - ssh-keyscan $SSH_SERVER >> ~/.ssh/known_hosts
   - chmod 644 ~/.ssh/known_hosts
   script:
-    - ssh tds@luftways.com "cd /home/tds && sh werewolf-canary-deploy.sh"
+  - ssh $SSH_USER@$SSH_SERVER "hostname && echo 'Welcome!!!' > welcome.txt"
+  artifacts:
+    paths:
+    - public
   only:
-    - develop
+  - master
 
 deploy-prod:
   environment:
