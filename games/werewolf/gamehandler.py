@@ -5,6 +5,7 @@ from random import choice
 import discord
 from discord.ext import commands
 
+from games.werewolf.cycle import cyclemanager
 from games.werewolf.player import Player
 import lang
 
@@ -20,6 +21,7 @@ class GameHandler(commands.Cog, name='Werewolf'):
 
     def __init__(self, client: commands.Bot):
         self.client = client
+        self.cyclemanager = cyclemanager
 
     async def __assign_roles(self, ctx: commands.Context):
         num_players = len(self.data['players'])
