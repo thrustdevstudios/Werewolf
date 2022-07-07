@@ -1,7 +1,7 @@
 deploy-canary:
   environment:
     name: canary
-  before-script:
+  before_script:
   - 'command -v ssh-agent >/dev/null || ( apk add --update openssh )' 
   - eval $(ssh-agent -s)
   - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
@@ -17,7 +17,7 @@ deploy-canary:
 deploy-prod:
   environment:
     name: production
-  before-script:
+  before_script:
   - 'command -v ssh-agent >/dev/null || ( apk add --update openssh )' 
   - eval $(ssh-agent -s)
   - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
