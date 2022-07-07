@@ -63,6 +63,9 @@
         "Die Dorfbewohner haben sich geeinigt, **{0}** zu lynchen.",
         "Sich wehrend wird **{0}** zum Galgen geführt."
     ],
+    "hunttarget": [
+        "Du hast **{0}** im Auge."
+    ],
     "alreadynight": [
         "Es ist bereits Nacht."
     ],
