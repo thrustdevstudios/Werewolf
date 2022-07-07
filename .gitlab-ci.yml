@@ -1,0 +1,29 @@
+before_script:
+  - apt-get update -qq
+  - apt-get install -qq git
+  # Setup SSH deploy keys
+  - 'which ssh-agent || ( apt-get install -qq openssh-client )'
+  - eval $(ssh-agent -s)
+  - ssh-add <(echo "$SSH_PRIVATE_KEY")
+  - mkdir -p ~/.ssh
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    
+deploy-canary:
+  type: deploy
+  environment:
+    name: canary
+    url: luftways.com
+  script:
+    - ssh tds@luftways.com "cd /home/tds && sh werewolf-canary-deploy.sh"
+  only:
+    - develop
+
+deploy-prod:
+  type: deploy
+  environment:
+    name: production
+    url: luftways.com
+  script:
+    - ssh tds@luftways.com "cd /home/tds && sh werewolf-d+eploy.sh"
+  only:
+    - master
